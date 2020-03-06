@@ -1,0 +1,87 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Scoreboard/Scoreboard.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/Background/Background.png" type="Texture" id=2]
+[ext_resource path="res://Scoreboard/Score_lable.tscn" type="PackedScene" id=3]
+[ext_resource path="res://fonts/LCD_Solid.ttf" type="DynamicFontData" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 72
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 32
+font_data = ExtResource( 4 )
+
+[node name="Scoreboard" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+texture = ExtResource( 2 )
+
+[node name="VBoxContainer" parent="." instance=ExtResource( 3 )]
+
+[node name="Label" type="Label" parent="."]
+anchor_right = 1.0
+margin_bottom = 70.0
+rect_min_size = Vector2( 560, 70 )
+custom_fonts/font = SubResource( 1 )
+text = "Scoreboard"
+align = 1
+
+[node name="Back" type="VBoxContainer" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -40.0
+margin_right = 200.0
+
+[node name="Back_button" type="Button" parent="Back"]
+margin_right = 200.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 200, 40 )
+flat = true
+
+[node name="Label" type="Label" parent="Back/Back_button"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = -2
+custom_constants/line_spacing = 0
+custom_constants/shadow_offset_y = 5
+text = "Back"
+align = 1
+
+[node name="Submit" type="VBoxContainer" parent="."]
+visible = false
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -200.0
+margin_top = -40.0
+
+[node name="Submit_button" type="Button" parent="Submit"]
+margin_right = 200.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 200, 40 )
+flat = true
+
+[node name="Label" type="Label" parent="Submit/Submit_button"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = -2
+custom_constants/line_spacing = 0
+custom_constants/shadow_offset_y = 5
+text = "Submit"
+align = 1
+[connection signal="pressed" from="Back/Back_button" to="." method="_on_Back_button_pressed"]
+[connection signal="pressed" from="Submit/Submit_button" to="." method="_on_Submit_button_pressed"]
